@@ -25,7 +25,7 @@ end
 #printing students names to screen
 def print(students, first_letter)
 
-  if first_letter != nil
+  if first_letter != ''
     k = 0
     while k < students.length
     #students.each do |student|
@@ -33,11 +33,11 @@ def print(students, first_letter)
       k += 1
     end
   else
-    while k < students.length
-    #students.each do |student|
-      puts "#{students[k][:name]} (#{students[k][:cohort]} cohort)" if students[k][:name].length < 12
-      #puts "#{student[:name]} (#{student[:cohort]} cohort)}" if (student[:name].length < 12)
-      k += 1
+    #while k < students.length
+    students.each do |student|
+      #puts "#{students[k][:name]} (#{students[k][:cohort]} cohort)" if students[k][:name].length < 12
+      puts "#{student[:name]} (#{student[:cohort]} cohort)}" if (student[:name].length < 12)
+      #k += 1
     end
   end
 end
@@ -74,6 +74,7 @@ puts
 
 def particular_first_letter
   puts 'Do you want the name of the student(s) to start with a particular letter?'
+  first_letter = ''
   first_letter = gets.chomp.downcase
   if first_letter.length > 1
     puts 'Invalid input. Please type a single letter from A-Z'
