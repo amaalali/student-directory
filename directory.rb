@@ -17,8 +17,9 @@
 students = [{name: "Dr. Hannibal Lecter", cohort: :november}, {name: "Darth Vader", cohort: :november}, {name: "Nurse Ratched", cohort: :november}, {name: "Michael Corloene", cohort: :november}, {name: "Alex DeLarge", cohort: :november}, {name: "The Wicked Witch of the West", cohort: :november}, {name: "Terminator", cohort: :november}, {name: "Freddy Krueger", cohort: :november}, {name: "The Joker",  cohort: :november}, {name: "Joffrey Baratheon", cohort: :november}, {name: "Norman Bates", cohort: :november}]
 
 def print_header
-  puts "The students of Villian Academy"
-  puts "-------------"
+  heading = "The students of Villian Academy"
+  puts heading
+  puts "-------------".center(heading.length)
 end
 
 #printing students names to screen
@@ -39,9 +40,6 @@ def print(students, first_letter)
       k += 1
     end
   end
-
-
-
 end
 
 def print_footer(names)
@@ -83,10 +81,6 @@ def particular_first_letter
   end
   first_letter
 end
-
-
-
-
 
 #students = input_students
 first_letter = particular_first_letter
