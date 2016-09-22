@@ -33,3 +33,30 @@ end
 print_header
 print(students)
 print_footer(students)
+
+
+def input_students
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
+  # empty array to store students info
+  students = []
+  name = gets.chomp
+  # this promt repeats untill the name is empty
+  while !name.empty? do
+    # store student info as hash in the array
+    students << {name: name, cohort: :november}
+    puts "Now we have #{students.count} students"
+    # get name of next student
+    name = gets.chomp
+  end
+  # returns the array of students info
+  students
+end
+
+puts
+
+
+students = input_students
+print_header
+print(students)
+print_footer(students)
