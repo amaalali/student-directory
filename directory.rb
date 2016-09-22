@@ -1,17 +1,24 @@
-student_count = 11 #Change here if number of students changes
-#printing list of students
-puts 'The students of Villian Academy'
-puts '-------------'
-puts 'Dr. Hannibal Lecter'
-puts'Darth Vader'
-puts 'Nurse Ratched'
-puts 'Michael Corloene'
-puts 'Alex DeLarge'
-puts 'The Wicked Witch of the West'
-puts 'Terminator'
-puts 'Freddy Krueger'
-puts 'The Joker'
-puts 'Joffrey Baratheon'
-puts 'Norman Bates'
+#array of all students
+students = [
+  "Dr. Hannibal Lecter",
+  "arth Vader",
+  "Nurse Ratched",
+  "Michael Corloene",
+  "Alex DeLarge",
+  "The Wicked Witch of the West",
+  "Terminator",
+  "Freddy Krueger",
+  "The Joker",
+  "Joffrey Baratheon",
+  "Norman Bates"
+]
+
+#printing students names to screen
+puts "The students of Villian Academy"
+puts "-------------"
+students.each do |student|
+  puts student
+end
+
 #Print message of number of students
-print "Overall, we have #{student_count} great students" #number of students
+print "Overall, we have #{students.count} great students" #number of students
