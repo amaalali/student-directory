@@ -14,6 +14,8 @@
 #  {name: "Norman Bates", cohort: :november}
 #]
 
+students = [{name: "Dr. Hannibal Lecter", cohort: :november}, {name: "Darth Vader", cohort: :november}, {name: "Nurse Ratched", cohort: :november}, {name: "Michael Corloene", cohort: :november}, {name: "Alex DeLarge", cohort: :november}, {name: "The Wicked Witch of the West", cohort: :november}, {name: "Terminator", cohort: :november}, {name: "Freddy Krueger", cohort: :november}, {name: "The Joker",  cohort: :november}, {name: "Joffrey Baratheon", cohort: :november}, {name: "Norman Bates", cohort: :november}]
+
 def print_header
   puts "The students of Villian Academy"
   puts "-------------"
@@ -23,12 +25,18 @@ end
 def print(students, first_letter)
 
   if first_letter != nil
-    students.each do |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort)" if (student[:name][0].downcase == first_letter.downcase && student[:name].length < 12)
+    k = 0
+    while k < students.length
+    #students.each do |student|
+      puts "#{students[k][:name]} (#{students[k][:cohort]} cohort)" if (students[k][:name][0].downcase == first_letter.downcase && students[k][:name].length < 12)
+      k += 1
     end
   else
-    students.each do |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort)}" if (student[:name].length < 12)
+    while k < students.length
+    #students.each do |student|
+      puts "#{students[k][:name]} (#{students[k][:cohort]} cohort)" if students[k][:name].length < 12
+      #puts "#{student[:name]} (#{student[:cohort]} cohort)}" if (student[:name].length < 12)
+      k += 1
     end
   end
 
@@ -80,7 +88,7 @@ end
 
 
 
-students = input_students
+#students = input_students
 first_letter = particular_first_letter
 print_header
 print(students, first_letter)
