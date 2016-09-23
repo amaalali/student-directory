@@ -7,34 +7,34 @@ def print_header
 end
 
 #printing students names to screen
-def print(students, first_letter ='')
+def print_students_list(first_letter ='')
   if first_letter != ''
     k = 0
-    while k < students.length
+    while k < @students.length
     #students.each do |student|
-      puts "#{students[k][:name]} (#{students[k][:cohort]} cohort)" if (students[k][:name][0].downcase == first_letter.downcase && students[k][:name].length < 12)
+      puts "#{@students[k][:name]} (#{@students[k][:cohort]} cohort)" #if (@students[k][:name][0].downcase == first_letter.downcase && @students[k][:name].length < 12)
       k += 1
     end
   else
-    #while k < students.length
-    students.each do |student|
-      #puts "#{students[k][:name]} (#{students[k][:cohort]} cohort)" if students[k][:name].length < 12
-      puts "#{student[:name]} (#{student[:cohort]} cohort)}" if (student[:name].length < 12)
+    #k = 0
+    #while k < @students.length
+    @students.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)}" #if (student[:name].length < 12)
       #k += 1
     end
   end
 end
 
-def print_footer(names)
+def print_footer
   #Print message of number of students
-  puts "Overall, we have #{names.count} great students" #number of students
+  puts "Overall, we have #{@students.count} great students" #number of students
 end
 
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # empty array to store students info
-  students = []
+  students = [] #not the same as @students
   name = gets.chomp
   # this promt repeats untill the name is empty
   while !name.empty? do
@@ -65,24 +65,32 @@ def particular_first_letter
   first_letter
 end
 
+def print_menu
+  #puts "Please select the operation you would like to perform"
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+
 def interactive_menu
-  students = Array.new
+  @students = Array.new
   loop do
     #print menu
-    puts "Please select the operation you would like to perform"
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
+    print_menu
     #get user selection
     selection = gets.chomp
     #3 running appropiate method
     case selection
     when "1"
-      students = input_students
+      @students = input_students
     when "2"
-      print_header
-      print(students)
-      print_footer(students)
+      show_students
     when "9"
       exit
     else
