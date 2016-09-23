@@ -7,21 +7,11 @@ def print_header
 end
 
 #printing students names to screen
-def print_students_list(first_letter ='')
-  if first_letter != ''
-    k = 0
-    while k < @students.length
-    #students.each do |student|
-      puts "#{@students[k][:name]} (#{@students[k][:cohort]} cohort)" #if (@students[k][:name][0].downcase == first_letter.downcase && @students[k][:name].length < 12)
-      k += 1
-    end
-  else
-    #k = 0
-    #while k < @students.length
-    @students.each do |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort)}" #if (student[:name].length < 12)
-      #k += 1
-    end
+def print_students_list
+  k = 0
+  while k < @students.length
+    puts "#{@students[k][:name]} (#{@students[k][:cohort]} cohort)"
+    k += 1
   end
 end
 
@@ -69,6 +59,7 @@ def print_menu
   #puts "Please select the operation you would like to perform"
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the list to students.csv"
   puts "9. Exit"
 end
 
@@ -76,6 +67,17 @@ def show_students
   print_header
   print_students_list
   print_footer
+end
+
+def save_students
+  #open file to write to
+  file = File.open("students.csv", "w")
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
+  file.close
 end
 
 def interactive_menu
@@ -91,6 +93,8 @@ def interactive_menu
       @students = input_students
     when "2"
       show_students
+    when "3"
+      save_students
     when "9"
       exit
     else
