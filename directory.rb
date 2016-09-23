@@ -26,12 +26,12 @@ def input_students
   puts "To finish, just hit return twice"
   # empty array to store students info
   students = [] #not the same as @students
-  name = gets.chomp
+  name = STDIN.gets.chomp
   # this promt repeats untill the name is empty
   while !name.empty? do
     # store student info as hash in the array
     puts "Please enter the cohort of the students"
-    cohort_of_this_student = gets.chomp
+    cohort_of_this_student = STDIN.gets.chomp
     students << {name: name, cohort: :"#{cohort_of_this_student}"} #:november}
     if students.count == 1
       puts "Now we have #{students.count} student"
@@ -39,7 +39,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     # get name of next student
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
   # returns the array of students info
   students
@@ -48,7 +48,7 @@ end
 def particular_first_letter
   puts 'Do you want the name of the student(s) to start with a particular letter?'
   first_letter = ''
-  first_letter = gets.chomp.downcase
+  first_letter = STDIN.gets.chomp.downcase
   if first_letter.length > 1
     puts 'Invalid input. Please type a single letter from A-Z'
     particular_first_letter
@@ -82,14 +82,25 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
+    name, cohort = line.chomp.split(',')
     @students <<  {name: name, cohort: cohort.to_sym}
   end
   file.close
-  puts @students
+end
+
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+     puts "Loaded #{@students.count} from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
 end
 
 def interactive_menu
@@ -98,7 +109,7 @@ def interactive_menu
     #print menu
     print_menu
     #get user selection
-    selection = gets.chomp
+    selection = STDIN.gets.chomp
     #3 running appropiate method
     case selection
     when "1"
@@ -117,4 +128,5 @@ def interactive_menu
   end
 end
 
+try_load_students
 interactive_menu
